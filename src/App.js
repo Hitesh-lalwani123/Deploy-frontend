@@ -20,7 +20,7 @@ function App() {
   const handleClick = () => {
     setLoading("loading...");
     axios
-      .post("http://localhost:3001/submissions", {
+      .post("https://collaborator-api.onrender.com", {
         code: code,
         input: input,
         lang: language,
@@ -54,18 +54,7 @@ function App() {
     console.log(e.target.value);
   };
 
-  const handleSave = () => {
-    axios
-      .post("http://localhost:3001/saveFile", {code})
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-      alert('Code saved')
-  };
+  
 
   useEffect(() => {
     socket.on("receive-message", (data) => {
@@ -138,15 +127,7 @@ function App() {
           >
             Submit
           </button>
-          <button
-            className="bg-blue-800 hover:bg-blue-700 row-span-1"
-            onClick={() => {
-              handleSave();
-            }}
-            
-          >
-            Save
-          </button>
+          
         </div>
       </div>
       <div>Active Users Connected: {users}</div>
